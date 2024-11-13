@@ -8,7 +8,7 @@ def Creat_List():
     list_recept.append(list.strip())
 
   return list_recept
-print(Creat_List())
+#print(Creat_List())
 
 
 def Creat_Dict():
@@ -32,6 +32,27 @@ def Creat_Dict():
         'measure': measure
       })
   return result
-print(Creat_Dict())
+#print(Creat_Dict())
+
+
+def Calculate_dish_quantity(quantity,disher):
+  cook_book = Creat_Dict()
+  result = {}
+  for dish in disher:
+    if dish in cook_book:
+      result[dish] = []
+      for ingredient in cook_book[dish]:
+        ingredient_name = ingredient['ingredient_name']
+        amount = int(ingredient['quantity']) * int(quantity)
+        measure = ingredient['measure']
+        result[dish].append({ingredient_name: {'quantity': amount, 'measure': measure}})
+    else:
+      return f"Блюдо '{dish}' не найдено вCook."
+
+  return result
+
+#print(Calculate_dish_quantity(152,['Утка по-пекински','Омлет']))
+
+
 
 
